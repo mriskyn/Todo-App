@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/mriskyn/Todo-App/issues"
   },
-  "homepage": "https://github.com/mriskyn/Todo-App#readme"
+  "homepage": "https://github.com/mriskyn/Todo-App#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "sequelize": "^6.3.5"
+  }
 }
