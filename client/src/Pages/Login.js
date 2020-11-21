@@ -53,7 +53,7 @@ export default function SignIn() {
   const history = useHistory();
 
   const [data, setData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -62,12 +62,11 @@ export default function SignIn() {
     history.push("/");
   }
 
-  function onChangeUsername(e) {
-    setData((prevData) => ({ ...prevData, username: e.target.value }));
-  }
+  function onChangeData(e) {
+    const key = e.target.attributes.name.value;
+    const value = e.target.value;
 
-  function onChangePassword(e) {
-    setData((prevData) => ({ ...prevData, password: e.target.value }));
+    setData((prevData) => ({ ...data, [key]: value }));
   }
 
   return (
@@ -92,7 +91,7 @@ export default function SignIn() {
             autoComplete="email"
             autoFocus
             value={data.username}
-            onChange={onChangeUsername}
+            onChange={onChangeData}
           />
           <TextField
             variant="outlined"
@@ -105,7 +104,7 @@ export default function SignIn() {
             id="password"
             autoComplete="current-password"
             value={data.password}
-            onChange={onChangePassword}
+            onChange={onChangeData}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useHistory, Link } from "react-router-dom";
 import {
   Avatar,
@@ -51,11 +51,25 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const history = useHistory();
   const classes = useStyles();
+  const [data, setData] = useState({
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: ''
+  })
 
   function onSubmitSignUp(e) {
     e.preventDefault();
 
     history.push("/login");
+  }
+
+  function onChangeData(e) {
+      const key = e.target.attributes.name.value;
+      const value = e.target.value
+
+      setData((prevData) => ({...data, [key]: value}))
+      console.log(data)
   }
 
   return (
@@ -80,6 +94,8 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                value={data.firstName}
+                onChange={onChangeData}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -91,6 +107,7 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                value={data.lastName}
               />
             </Grid>
             <Grid item xs={12}>
@@ -102,6 +119,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={data.email}
               />
             </Grid>
             <Grid item xs={12}>
@@ -114,6 +132,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={data.password}
               />
             </Grid>
             <Grid item xs={12}>
